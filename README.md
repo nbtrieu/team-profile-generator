@@ -40,7 +40,7 @@ To use this application, simply initialize the npm and install the inquirer pack
 
 ![Preview of team profile HTML webpage](./assets/screenshots/view-team-html.png)
 
-[To learn more, watch the walkthrough video here.]()
+[To learn more, watch the walkthrough video here.](https://drive.google.com/file/d/1AMgJEJeGB2MzcUqHIE_CW0lkH8zzjsKC/view)
 
 ## License
     
