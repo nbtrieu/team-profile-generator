@@ -1,8 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
-const pageTemplate = require('./src/page-template');
-
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -176,14 +174,13 @@ function appendToFile(fileName, data) {
 function createManager() {
   inquirer.prompt(managerQuestions)
   .then((userInput) => {
-    console.log(userInput);
+    // console.log(userInput);
     // Constructing new Manager object:
     const manager = new Manager(
       userInput.managerName, userInput.managerId, 
       userInput.managerEmail, userInput.managerOfficeNumber
     );
 
-    // would it still work if move writetofile to the very end?
     writeToFile('team.html', `
     <html lang="en">
   <head>
@@ -237,8 +234,7 @@ function showMenu() {
     }
   ])
   .then((userInput) => {
-    console.log('user input: ', userInput);
-    console.log('type: ', typeof(userInput));
+    // console.log('user input: ', userInput);
     createOthers(userInput);
   })
 }
@@ -247,7 +243,7 @@ function createOthers(userInput) {
   if (userInput.options === 'Engineer') {
     inquirer.prompt(engineerQuestions)
     .then((userInput) => {
-      console.log(userInput);
+      // console.log(userInput);
       // Constructing new Engineer object:
       const engineer = new Engineer(
         userInput.engineerName, userInput.engineerId, 
@@ -278,7 +274,7 @@ function createOthers(userInput) {
   } else if (userInput.options === 'Intern') {
     inquirer.prompt(internQuestions)
     .then((userInput) => {
-      console.log(userInput);
+      // console.log(userInput);
       // Constructing new Intern object:
       const intern = new Intern(
         userInput.internName, userInput.internId, 

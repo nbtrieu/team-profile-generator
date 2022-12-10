@@ -1,11 +1,10 @@
 {
   "name": "team-profile-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "![License Badge](https://img.shields.io/badge/license-MIT-success)",
   "main": "index.js",
   "directories": {
-    "lib": "lib",
-    "test": "test"
+    "lib": "lib"
   },
   "repository": {
     "type": "git",

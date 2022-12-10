@@ -1,36 +1,68 @@
 # Team Profile Generator
+![License Badge](https://img.shields.io/badge/license-MIT-success)
 
-GIVEN a command-line application that accepts user input
+## Description
 
-WHEN I am prompted for my team members and their information
+This Node.js command-line application is built to accept information about employees on a software engineering team and dynamically generate an HTML webpage that displays summaries for each team member.
 
-THEN an HTML file is generated that displays a nicely formatted team roster based on user input
 
-WHEN I click on an email address in the HTML
+## Table of Content
 
-THEN my default email program opens and populates the TO field of the email with the address
+* [Installation](#installation)
 
-WHEN I click on the GitHub username
+* [Usage](#usage)
 
-THEN that GitHub profile opens in a new tab
+* [License](#license)
 
-WHEN I start the application
+* [Contributing](#contributing)
 
-THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
+* [Tests](#tests)
 
-WHEN I enter the team manager’s name, employee ID, email address, and office number
+* [Questions](#questions)   
 
-THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
 
-WHEN I select the engineer option
+## Installation
 
-THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+To install all necessary dependencies, please run the command below:
+``npm i inquirer@8.2.4``
 
-WHEN I select the intern option
 
-THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
+## Usage
 
-WHEN I decide to finish building my team
+To use this application, simply initialize the npm and install the inquirer package (as instructed above). Then, run node index.js and answer the prompts in the command line interface.
+ 
 
-THEN I exit the application, and the HTML is generated
+![Initialize npm, install inquirer package, and run node](./assets/screenshots/init-and-install.png)  
+
+![Answer inquirer prompts](./assets/screenshots/inquirer-prompts.png)  
+
+![Open the newly generated team.html](./assets/screenshots/open-team-html.png)
+
+![Preview of team profile HTML webpage](./assets/screenshots/view-team-html.png)
+
+[To learn more, watch the walkthrough video here.]()
+
+## License
+    
+Licensed under the MIT license.    
+
+
+## Contributing
+
+There are many ways in which you can participate in this project.
+Users can contribute to this repo by submitting bugs and feature requests, reviewing source code changes, and making pull requests for any issues they can find.   
+
+
+## Tests
+
+To run tests, please run the command below:  
+
+``npm i --save-dev jest``        
+``npm test``    
+
+
+## Questions
+
+For any questions or feedback, please feel free to email me at nbtrieu@uci.edu.
+If you would like to check out more of my projects, please visit [nbtrieu](https://github.com/nbtrieu).
 
