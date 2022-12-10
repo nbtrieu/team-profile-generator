@@ -61,15 +61,73 @@ const managerQuestions = [
   },
 ];
 
+const engineerQuestions = [
+  {
+    type: 'input',
+    name: 'engineerName',
+    message: "What is the engineer's name?",
+    validate: (answer) => {
+      if (answer !== '') {
+        return true;
+      }
+      return 'Please enter at least one character.';
+    }
+  },
+  {
+    type: 'input',
+    name: 'engineerId',
+    message: "What is the engineer's ID number?",
+    validate: (answer) => {
+      if (!/[0-9]/.test(answer)) {
+        return 'Please enter numbers only.'
+      } else if (answer < 0) {
+        return 'Please enter positive integers only.'
+      } else {
+        return true;
+      }
+    }
+  },
+  {
+    type: 'input',
+    name: 'engineerEmail',
+    message: "What is the engineer's email?",
+    validate: (answer) => {
+      let regEx = /\S+@\S+\.\S+/;
+      if (regEx.test(answer)) {
+        return true;
+      }
+      return 'Please enter a valid email address.';
+    }
+  },
+  {
+    type: 'input',
+    name: 'engineerGithub',
+    message: "What is the engineer's GitHub username?",
+    validate: (answer) => {
+      if (answer !== '' && answer.length >1) {
+        return true;
+      }
+      return 'Please enter a valid username.';
+    }
+  },
+];
+
 function writeToFile(fileName, data) {
   return fs.writeFile(path.join(__dirname, 'dist', fileName), data, (error) =>
    error ? console.error(error) : console.log('Successfully written to file!'));
 }
 
+function appendToFile(fileName, data) {
+  return fs.appendFile(path.join(__dirname, 'dist', fileName), data, (error) =>
+   error ? console.error(error) : console.log('Successfully appended to file!'));
+}
+
 function initializeApp() {
   console.log("Welcome! Are you ready to make your team?");
   console.log("Let's begin with the team manager.");
-  inquirer.prompt(managerQuestions)
+
+  function createManager() {
+    inquirer.prompt(managerQuestions)
   .then((userInput) => {
     console.log(userInput);
     // Constructing new Manager object:
@@ -85,14 +143,46 @@ function initializeApp() {
     <p>Email: ${manager.email}</p>
     <p>Office Number: ${manager.officeNumber}</p>
     `);
+
+    createOthers();
   });
-  
-  inquirer.prompt([
+  }
+
+  function createOthers() {
+    inquirer.prompt([
     {
       type: 'list',
-      name: ''
+      name: 'options',
+      message: 'Which team member would you like to add?',
+      choices: ['Engineer', 'Intern', "None; I'm done building my team."],
     }
   ])
+  .then((userInput) => {
+    // console.log(userInput);
+    // console.log(typeof(userInput));
+    if (userInput.options === 'Engineer') {
+      inquirer.prompt(engineerQuestions)
+      .then((userInput) => {
+        console.log(userInput);
+        // Constructing new Engineer object:
+        const engineer = new Engineer(
+          userInput.engineerName, userInput.engineerId, 
+          userInput.engineerEmail, userInput.engineerGithub
+        );
+        console.log(engineer.engineerName);
+        appendToFile('team.html', `
+          <h1>Engineer</h1>
+          <p>Name: ${engineer.name}</p>
+          <p>ID: ${engineer.id}</p>
+          <p>Email: ${engineer.email}</p>
+          <p>Office Number: ${engineer.officeNumber}</p>
+        `);
+      });
+    }
+  })
+  };
+
+  createManager();
 }
 
 initializeApp();
